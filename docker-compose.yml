@@ -1,0 +1,19 @@
+version: '3'
+services:
+  SERVICE_NAME:
+    image: SERVER:PORT/IMAGE_NAME.dockerize:NEW_VERSION
+    environment:
+      - NODE_ENV=Prod
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+    networks:
+      - backend
+    ports:
+      - "CUSTOM_PORT:3000"
+    command: npm run dev
+    stdin_open: true
+    tty: true
+networks:
+  backend:
